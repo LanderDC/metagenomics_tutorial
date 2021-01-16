@@ -1,4 +1,4 @@
-<p align="left">
+<p align="right">
   <img src="https://rega.kuleuven.be/cev/viralmetagenomics/pictures/lovm/image_preview" height="12.5%" width="12.5%" />
 </p>
 
