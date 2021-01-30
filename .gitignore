@@ -5,3 +5,8 @@ images/.DS_Store
 #Notebook temps/
 .ipynb_checkpoints
 */.ipynb_checkpoints/*.ipynb
+#Large files
+*/*.fasta*
+*/*.fastq*
+*/*.fa*
+*/*.fq*
