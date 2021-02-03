@@ -10,3 +10,4 @@ images/.DS_Store
 */*.fastq*
 */*.fa*
 */*.fq*
+*/*.bt*
