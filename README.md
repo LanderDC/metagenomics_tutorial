@@ -3,6 +3,8 @@
 # JM-lab bioinformatics pipeline: virome analysis tutorial
 [![Generic badge](https://img.shields.io/badge/GitHub-MatthijnssensLab-brightgreen?logo=github)](https://github.com/Matthijnssenslab)
 [![Generic badge](https://img.shields.io/badge/NetoVIR-doi.org%2F10.1038%2Fsrep16532-blue)](https://doi.org/10.1038/srep16532)
+[![Generic badge](https://img.shields.io/twitter/url?label=%40JMatthijnssens&style=social&url=https%3A%2F%2Ftwitter.com%2FJMatthijnssens)](https://twitter.com/JMatthijnssens)
+[![Generic badge](https://img.shields.io/badge/Laboratory%20of%20Viral%20Metagenomics-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/MatthijnssensLab)
 
 This repository is intended as a learning tool for new PhD-students, master students, interns, etc. The main jupyter notebook gives an overview of the commands needed for the primary analysis of raw NGS data, flavoured with explanations and neat tips & tricks. Basic command-line knowledge is required to be able to complete this tutorial, a Linux introduction course like [this one](https://ryanstutorials.net/linuxtutorial/) should suffice.
 
