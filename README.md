@@ -1,6 +1,6 @@
 <a href="https://rega.kuleuven.be/cev/viralmetagenomics"><img src="https://rega.kuleuven.be/cev/viralmetagenomics/pictures/lovm/image_preview" height="12.5%" width="12.5%" align="right"/></a>
 
-# JM-lab bioinformatics pipeline: virome analysis tutorial
+# JM-lab bioinformatics pipeline
 [![Generic badge](https://img.shields.io/badge/GitHub-MatthijnssensLab-brightgreen?logo=github)](https://github.com/Matthijnssenslab)
 [![Generic badge](https://img.shields.io/badge/NetoVIR-doi.org%2F10.1038%2Fsrep16532-blue)](https://doi.org/10.1038/srep16532)
 [![Generic badge](https://img.shields.io/twitter/url?label=%40JMatthijnssens&style=social&url=https%3A%2F%2Ftwitter.com%2FJMatthijnssens)](https://twitter.com/JMatthijnssens)
