@@ -12,3 +12,5 @@ images/.DS_Store
 */*.fq*
 */*.bt*
 *.fa*
+*/*.m8
+*/*.magnitudes*
