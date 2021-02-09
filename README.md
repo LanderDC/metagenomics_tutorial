@@ -15,5 +15,5 @@ This tutorial can be followed by running the commands directly from the terminal
 * Internet connection
 * Basic Linux command-line knowledge
 * The Github repository with this jupyter notebook, solutions notebook and files, etc.
-* NetoVIR FASTQ-files, custom DIAMOND and Krona database from the J-drive
+* NetoVIR FASTQ-files (named <em>metatoy.&ast;.fastq.gz</em>)
 * Bioinformatics mood
