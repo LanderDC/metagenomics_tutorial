@@ -14260,18 +14260,17 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<a href="https://rega.kuleuven.be/cev/viralmetagenomics"><img align="right" src="https://rega.kuleuven.be/cev/viralmetagenomics/pictures/lovm/image_preview" height="7.5%" width="7.5%" /></a></p>
-<h1 id="JM-lab-bioinformatics-pipeline">JM-lab bioinformatics pipeline<a class="anchor-link" href="#JM-lab-bioinformatics-pipeline">&#182;</a></h1><p><a href="https://github.com/Matthijnssenslab"><img src="https://img.shields.io/badge/GitHub-MatthijnssensLab-brightgreen?logo=github" alt="Generic badge"></a>
-<a href="https://doi.org/10.1038/srep16532"><img src="https://img.shields.io/badge/NetoVIR-doi.org%2F10.1038%2Fsrep16532-blue" alt="Generic badge"></a>
-<a href="https://twitter.com/JMatthijnssens"><img src="https://img.shields.io/twitter/url?label=%40JMatthijnssens&amp;style=social&amp;url=https%3A%2F%2Ftwitter.com%2FJMatthijnssens" alt="Generic badge"></a>
-<a href="https://www.facebook.com/MatthijnssensLab"><img src="https://img.shields.io/badge/Laboratory%20of%20Viral%20Metagenomics-1877F2?style=flat-square&amp;logo=facebook&amp;logoColor=white" alt="Generic badge"></a></p>
-<hr>
-<p>This jupyter notebook gives an overview of the commands needed for the primary analysis of raw NGS data, flavoured with explanations and neat tips and tricks. This is intended as a learning tool for new PhD-students, master students, labrotations, interns, etc. Basic command-line knowledge is required to be able to complete this tutorial, a Linux introduction course like <a href="https://ryanstutorials.net/linuxtutorial/">this one</a> should suffice.</p>
+<a href="https://rega.kuleuven.be/cev/viralmetagenomics" target="_blank"><img  align="right" src="https://rega.kuleuven.be/cev/viralmetagenomics/pictures/lovm/image_preview" height="7.5%" width="7.5%" /></a></p>
+<h1 id="JM-lab-bioinformatics-pipeline">JM-lab bioinformatics pipeline<a class="anchor-link" href="#JM-lab-bioinformatics-pipeline">&#182;</a></h1><p><a href="https://github.com/Matthijnssenslab" target="_blank"><img src="https://img.shields.io/badge/GitHub-MatthijnssensLab-brightgreen?logo=github" alt="Generic badge"></a>
+<a href="https://doi.org/10.1038/srep16532" target="_blank"><img src="https://img.shields.io/badge/NetoVIR-doi.org%2F10.1038%2Fsrep16532-blue" alt="Generic badge"></a>
+<a href="https://twitter.com/JMatthijnssens" target="_blank"><img src="https://img.shields.io/twitter/url?label=%40JMatthijnssens&amp;style=social&amp;url=https%3A%2F%2Ftwitter.com%2FJMatthijnssens" alt="Generic badge"></a>
+<a href="https://www.facebook.com/MatthijnssensLab" target="_blank"><img src="https://img.shields.io/badge/Laboratory%20of%20Viral%20Metagenomics-1877F2?style=flat-square&amp;logo=facebook&amp;logoColor=white" alt="Generic badge"></a></p><hr>
+<p>This jupyter notebook gives an overview of the commands needed for the primary analysis of raw NGS data, flavoured with explanations and neat tips and tricks. This is intended as a learning tool for new PhD-students, master students, labrotations, interns, etc. Basic command-line knowledge is required to be able to complete this tutorial, a Linux introduction course like <a href="https://ryanstutorials.net/linuxtutorial/" target="_blank">this one</a> should suffice.</p>
 <p>For this tutorial, we will work on the <a href="#1.1-Logging-into-the-teaching-server">gbiomed teaching server</a>. Further, you can run the commands directly from the terminal or within this jupyter notebook. To run a jupyter notebook on the teaching server, copy it to your <code>~/data/jupyternotebooks/</code> folder and open an internet browser to navigate to <a href="https://bmw.gbiomed.kuleuven.be/">bmw.gbiomed.kuleuven.be</a>, log in with your KU Leuven credentials which should finally allow you to run the notebook. You can find more information on how to transfer files to a remote server <a href="#1.2-Installing-an-SFTP-client">below</a>.</p>
 <h4 id="Requirements:">Requirements:<a class="anchor-link" href="#Requirements:">&#182;</a></h4><ul>
 <li>Internet connection</li>
 <li>Basic Linux command-line knowledge</li>
-<li>Local copy of the <a href="https://github.com/Matthijnssenslab">Github repository</a> with this jupyter notebook, solutions notebook, extra content, etc.</li>
+<li>Local copy of the <a href="https://github.com/Matthijnssenslab" target="_blank">Github repository</a> with this jupyter notebook, solutions notebook, extra content, etc.</li>
 <li>NetoVIR FASTQ-files (named <em>metatoy.&ast;.fastq.gz</em>)</li>
 <li>Bioinformatics mood</li>
 </ul>
@@ -14293,9 +14292,9 @@ a.anchor-link {
     <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
     <div style="color:black">
 <p>To be able to perform analysis on a Linux machine or a server, a connection needs to be made through the shell of the operating system. Through this shell we can use the command-line interface to execute tasks.</p>
-<p>For this tutorial, we can work on the teaching server of gbiomed (bmw.gbiomed.kuleuven.be). Everyone with a u- or r-number from KU Leuven can connect to this remote server by using <code>ssh</code> (<a href="https://searchsecurity.techtarget.com/definition/Secure-Shell">more info</a>) with your KU Leuven credentials.</p>
+<p>For this tutorial, we can work on the teaching server of gbiomed (bmw.gbiomed.kuleuven.be). Everyone with a u- or r-number from KU Leuven can connect to this remote server by using <code>ssh</code> (<a target="_blank" href="https://searchsecurity.techtarget.com/definition/Secure-Shell">more info</a>) with your KU Leuven credentials.</p>
 <p>MacOS and Linux users can already proceed to the next step as these operating systems already have a terminal and <code>ssh</code> natively installed. </p>
-<p>Windows users on the other hand, will have to install an SSH client (<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> or <a href="https://www.bitvise.com/ssh-client-download">Bitvise</a>) or a Linux subsytem for Windows and a terminal app (eg. Ubuntu app). The latter is preferred because it is already a part of Windows and subsequently the next steps will be the same as for Linux and Mac users. Instructions on how to install the Ubuntu terminal app on Windows can be found <a href="https://ubuntu.com/tutorials/ubuntu-on-windows#1-overview">here</a>, be aware that this requires at least a x86 PC running Windows 10 (Fall Creators update Oct 2017).</p></div></div><p><strong>Perform following actions in a terminal (command-line interface):</strong></p>
+<p>Windows users on the other hand, will have to install an SSH client (<a target="_blank" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> or <a target="_blank" href="https://www.bitvise.com/ssh-client-download">Bitvise</a>) or a Linux subsytem for Windows and a terminal app (eg. Ubuntu app). The latter is preferred because it is already a part of Windows and subsequently the next steps will be the same as for Linux and Mac users. Instructions on how to install the Ubuntu terminal app on Windows can be found <a target="_blank" href="https://ubuntu.com/tutorials/ubuntu-on-windows#1-overview">here</a>, be aware that this requires at least a x86 PC running Windows 10 (Fall Creators update Oct 2017).</p></div></div><p><strong>Perform following actions in a terminal (command-line interface):</strong></p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14321,7 +14320,7 @@ a.anchor-link {
 <div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
     <b><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Important</b><br>
     <p style="color: black">
-<b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on the teaching server, work in the <code>data</code> directory, which is a symbolic link to <code>/mnt/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</p></div><h3 id="1.2-Installing-an-SFTP-client">1.2 Installing an SFTP client<a class="anchor-link" href="#1.2-Installing-an-SFTP-client">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
+<b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on the teaching server, work in the <code>data</code> directory, which is a symbolic link to <code>/mnt/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</p></div><h3 id="1.2-Installing-an-SFTP-client">1.2 Installing an SFTP client<a class="anchor-link" href="#1.2-Installing-an-SFTP-client">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
 <blockquote><p><strong>Sidenote:</strong> <br> <em>Bitvise is an SSH and SFTP client in one, so if you're using Bitvise there is no need to install FileZilla.</em></p>
 </blockquote>
 <p>Once you installed and opened FileZilla, it should look like this:</p>
@@ -14357,7 +14356,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.3-Installing-all-necessary-software-on-the-remote-server">1.3 Installing all necessary software on the remote server<a class="anchor-link" href="#1.3-Installing-all-necessary-software-on-the-remote-server">&#182;</a></h3><h4 id="1.3.1-Miniconda">1.3.1 Miniconda<a class="anchor-link" href="#1.3.1-Miniconda">&#182;</a></h4><p><strong>Miniconda</strong> is a package manager from which you can install a lot of (bioinformatics) software. More info on conda can be found <a href="https://docs.conda.io/projects/conda/en/latest/">here</a>.</p>
+<h3 id="1.3-Installing-all-necessary-software-on-the-remote-server">1.3 Installing all necessary software on the remote server<a class="anchor-link" href="#1.3-Installing-all-necessary-software-on-the-remote-server">&#182;</a></h3><h4 id="1.3.1-Miniconda">1.3.1 Miniconda<a class="anchor-link" href="#1.3.1-Miniconda">&#182;</a></h4><p><strong>Miniconda</strong> is a package manager from which you can install a lot of (bioinformatics) software. More info on conda can be found <a href="https://docs.conda.io/projects/conda/en/latest/" target="_blank">here</a>.</p>
 <h5 id="Installing-Miniconda:">Installing Miniconda:<a class="anchor-link" href="#Installing-Miniconda:">&#182;</a></h5><ol>
 <li>Create in your datafolder a new <code>software</code> directory and move into that directory:</li>
 </ol>
@@ -14383,7 +14382,7 @@ mkdir software
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <ol>
-<li>Download the Miniconda installer with <code>wget</code>. Next, run the installation script (see command-line options below). When Miniconda is installed, activate conda by sourcing the initialization script, this simply sets a couple of shell environment variables, and <code>conda</code> command as a shell function. More information in the <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html">installer guidelines</a>.</li>
+<li>Download the Miniconda installer with <code>wget</code>. Next, run the installation script (see command-line options below). When Miniconda is installed, activate conda by sourcing the initialization script, this simply sets a couple of shell environment variables, and <code>conda</code> command as a shell function. More information in the <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html" target="_blank">installer guidelines</a>.</li>
 </ol>
 
 </div>
@@ -14461,7 +14460,7 @@ conda install -y -c bioconda -c anaconda samtools bwa-mem2 bowtie2 trimmomatic b
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="1.3.2-Installing-from-another-source">1.3.2 Installing from another source<a class="anchor-link" href="#1.3.2-Installing-from-another-source">&#182;</a></h4><p>The Miniconda installation will most of the time lag a few versions behind the most current release. If you really want the most recent version of the software, then you'll need to manually install the software and its dependencies.</p>
 <p>Next to Miniconda their are a lot of other possibilities to install software (<code>pip</code>, compiling from source, unpacking binaries, installing from github repository, etc.)</p>
-<h4 id="1.3.2.1-DIAMOND">1.3.2.1 DIAMOND<a class="anchor-link" href="#1.3.2.1-DIAMOND">&#182;</a></h4><p>As the latest version of <a href="https://github.com/bbuchfink/diamond">DIAMOND</a> (a sequence aligner for protein and translated DNA searches) is not available through <code>conda</code>, we can install it from Github by following the <a href="https://github.com/bbuchfink/diamond/wiki">installation instructions</a>.</p>
+<h4 id="1.3.2.1-DIAMOND">1.3.2.1 DIAMOND<a class="anchor-link" href="#1.3.2.1-DIAMOND">&#182;</a></h4><p>As the latest version of <a href="https://github.com/bbuchfink/diamond" target="_blank">DIAMOND</a> (a sequence aligner for protein and translated DNA searches) is not available through <code>conda</code>, we can install it from Github by following the <a href="https://github.com/bbuchfink/diamond/wiki" target="_blank">installation instructions</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14485,7 +14484,7 @@ tar -xzf diamond-linux64.tar.gz
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now we still need to put the diamond executable in our <code>PATH</code> variable so we can call the <code>diamond</code> command from everywhere in the command line. This can be done by making a <code>bin</code> subdirectory in <code>~/data/software/</code>, followed by creating a <a href="https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/">symbolic link</a> from the <code>diamond</code> executable to <code>~/data/software/bin/</code> and finally export this directory to our <code>$PATH</code> by adding it to your <code>.profile</code> file.</p>
+<p>Now we still need to put the diamond executable in our <code>PATH</code> variable so we can call the <code>diamond</code> command from everywhere in the command line. This can be done by making a <code>bin</code> subdirectory in <code>~/data/software/</code>, followed by creating a <a href="https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/" target="_blank">symbolic link</a> from the <code>diamond</code> executable to <code>~/data/software/bin/</code> and finally export this directory to our <code>$PATH</code> by adding it to your <code>.profile</code> file.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14535,8 +14534,8 @@ ln -s ~/data/software/diamond/diamond .
     <p style="color: black">
 More documentation on how and where to set the <code>PATH</code> variable in these two topics:</p>
 <ul style="color: black">
-<li><strong>How</strong>: <a href="https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path">How to correctly add a path to PATH</a></li>
-<li><strong>Where</strong>: <a href="https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980#183980">Difference between .bashrc and .profile files</a></li>
+<li><strong>How</strong>: <a target="_blank" href="https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path">How to correctly add a path to PATH</a></li>
+<li><strong>Where</strong>: <a target="_blank" href="https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980#183980">Difference between .bashrc and .profile files</a></li>
 </ul></div><p>When you <code>source</code> your <code>.profile</code> file, you should now be able to call <code>diamond</code>.</p>
 
 </div>
@@ -14577,7 +14576,7 @@ More documentation on how and where to set the <code>PATH</code> variable in the
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="1.3.2.2-Krona">1.3.2.2 Krona<a class="anchor-link" href="#1.3.2.2-Krona">&#182;</a></h4><p>In the recent past, there were some issues with <a href="https://github.com/marbl/Krona">Krona</a> but they have been solved by the latest releases on Github. Unfortunately these are not yet available through <code>conda</code>, so we will also install them directly from Github.</p>
+<h4 id="1.3.2.2-Krona">1.3.2.2 Krona<a class="anchor-link" href="#1.3.2.2-Krona">&#182;</a></h4><p>In the recent past, there were some issues with <a target="_blank" href="https://github.com/marbl/Krona">Krona</a> but they have been solved by the latest releases on Github. Unfortunately these are not yet available through <code>conda</code>, so we will also install them directly from Github.</p>
 <p> Clone the Krona repository in your <code>~/data/software</code> directory.</p>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14655,7 +14654,7 @@ git clone https://github.com/marbl/Krona.git
     <b><i class="fas fa-pencil-alt"></i>&nbsp; Exercise</b><br>
 
 <h4 id="1-3-1-exercise" style="color: black">1.3-1 Exercise</h4>
-<p style="color: black">Try to install the latest version of <a href="https://github.com/ablab/spades">SPAdes</a> by yourself. If you have troubles with this exercise, the steps are listed in the solutions notebook.</p></div>
+<p style="color: black">Try to install the latest version of <a target="_blank" href="https://github.com/ablab/spades">SPAdes</a> by yourself. If you have troubles with this exercise, the steps are listed in the solutions notebook.</p></div>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14793,7 +14792,7 @@ Before we start, some commandments to live by:</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <hr>
-<h3 id="2.1-Trimming-and-QC">2.1 Trimming and QC<a class="anchor-link" href="#2.1-Trimming-and-QC">&#182;</a></h3><p><strong>Raw reads are imperfect</strong> due to presence of primer and adapter sequences from WTA2, Nextera library prep,... and because NGS inherently produces some errors during base calling. The quality of such a base call gets encoded in a FASTQ file as a <a href="https://en.wikipedia.org/wiki/Phred_quality_score#:~:text=The%20FASTQ%20format%20encodes%20phred,efficacy%20of%20different%20sequencing%20methods.">PHRED-score</a>. This also means that the raw reads have to be filtered and trimmed for these imperfections. We can do this by using software (eg. Trimmomatic, cutadapt, etc.) that will trim the reads based on base call quality and the presence of adapter sequences provided by the user. However, it is best to check the quality of your samples also after trimming your reads.</p>
+<h3 id="2.1-Trimming-and-QC">2.1 Trimming and QC<a class="anchor-link" href="#2.1-Trimming-and-QC">&#182;</a></h3><p><strong>Raw reads are imperfect</strong> due to presence of primer and adapter sequences from WTA2, Nextera library prep,... and because NGS inherently produces some errors during base calling. The quality of such a base call gets encoded in a FASTQ file as a <a href="https://en.wikipedia.org/wiki/Phred_quality_score#:~:text=The%20FASTQ%20format%20encodes%20phred,efficacy%20of%20different%20sequencing%20methods." target="_blank">PHRED-score</a>. This also means that the raw reads have to be filtered and trimmed for these imperfections. We can do this by using software (eg. Trimmomatic, cutadapt, etc.) that will trim the reads based on base call quality and the presence of adapter sequences provided by the user. However, it is best to check the quality of your samples also after trimming your reads.</p>
 <h4 id="2.1.1-Trimmomatic">2.1.1 Trimmomatic<a class="anchor-link" href="#2.1.1-Trimmomatic">&#182;</a></h4><p>We start by trimming the reads in our sample with Trimmomatic, a flexible read trimming tool for Illumina NGS data.</p>
 <p>The current Trimmomatic trimming steps are:</p>
 <ul>
@@ -14902,7 +14901,7 @@ trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fa
 
 <details style="cursor:pointer;color:black" >
     <summary>Solutions for the Trimmomatic options </summary>
-    More info in the <a href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf">manual</a>
+    More info in the <a href="http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf" target="_blank">manual</a>
     <br>
     <hl><b> ILLUMINACLIP: </b></hl>
         <li><code>~/data/meta_tutorial/primer_WTA2_Nextera.fa</code>: provides the path to the fasta file with adapter and primer sequences </li>
@@ -15003,12 +15002,14 @@ Check the generated HTML-files and look if your sample passes QC. In the <code>f
 <h4 id="2.2.1-Mapping">2.2.1 Mapping<a class="anchor-link" href="#2.2.1-Mapping">&#182;</a></h4><p>Mapping is a <strong>specific case of local alignment</strong> for aligning short sequences (reads) to a reference. This is performed by a short sequence aligner/mapper (eg. Bowtie, BWA, etc.). In this case, we align sequencing reads to the assembled contaminome sequences. The output of the mapping process is stored in <strong>SAM-files</strong> (Sequence Alignment Map) or their compressed equivalent <strong>BAM</strong> (Binary Alignment Map).</p>
 <p>In the image below, a visual representation is given on the mapping of reads to a reference sequence:
 <br><br></p>
-<p><center><img src="https://training.galaxyproject.org/training-material/topics/sequence-analysis/images/mapping/mapping.png" width="50%" heiht="50%"/></center></p>
-<p><center><b>Overview of read mapping to a reference sequence</b></center>
+<p><figure>
+    <center><img src="https://training.galaxyproject.org/training-material/topics/sequence-analysis/images/mapping/mapping.png" width="50%" heiht="50%" /></center>
+    <center><figcaption><b>Overview of read mapping to a reference sequence</b></figcaption></center>
+    </figure>
 <br></p>
 <p>We will use <code>bowtie2</code> to map the reads in our sample to the contaminome. To calculate the statistics of the mapping and to remove the mapped reads from our sample, we can use <code>samtools</code> and <code>bedtools</code>. <br />
 In this tutorial, the contaminome is already assembled and indexed with <code>bowtie2</code>. You can find the files in the <code>contaminome/</code> folder.</p>
-<h5 id="Bowtie">Bowtie<a class="anchor-link" href="#Bowtie">&#182;</a></h5><p><a href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#introduction">Bowtie2</a> is the enhanced version of the original Bowtie-mapper and is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences.</p>
+<h5 id="Bowtie">Bowtie<a class="anchor-link" href="#Bowtie">&#182;</a></h5><p><a target="_blank" href="http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#introduction">Bowtie2</a> is the enhanced version of the original Bowtie-mapper and is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15042,8 +15043,8 @@ bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/co
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="2.2.2-Removing-mapped-reads">2.2.2 Removing mapped reads<a class="anchor-link" href="#2.2.2-Removing-mapped-reads">&#182;</a></h4><h5 id="Samtools">Samtools<a class="anchor-link" href="#Samtools">&#182;</a></h5><p><a href="http://www.htslib.org/">Samtools</a> is a set of utilities that <strong>manipulate alignments in the SAM/BAM format</strong>. It imports from and exports to the SAM format, does sorting, merging and indexing, and allows to retrieve reads in any regions swiftly.</p>
-<p>An important function of <code>samtools</code> is the ability to keep or remove certain reads by specifying <strong>SAM flags</strong>. During mapping, reads are assigned a certain SAM flag. This number represents a certain combination of features of the alignment. Actually, the flag field consists of 10 bits, of which every bit is related to the absence (0) or presence (1) of a feature. So while the features are stored in bitwise fashion (0's and 1's), to report this number, the FLAG field converts these bits to a readable number, the number these bits represent. Unfortunately, this number is still very user-unfriendly to read. Luckily, there are <strong>tools to convert this number into a feature list</strong>, like <a href="https://broadinstitute.github.io/picard/explain-flags.html">this one</a>.
+<h4 id="2.2.2-Removing-mapped-reads">2.2.2 Removing mapped reads<a class="anchor-link" href="#2.2.2-Removing-mapped-reads">&#182;</a></h4><h5 id="Samtools">Samtools<a class="anchor-link" href="#Samtools">&#182;</a></h5><p><a target="_blank" href="http://www.htslib.org/">Samtools</a> is a set of utilities that <strong>manipulate alignments in the SAM/BAM format</strong>. It imports from and exports to the SAM format, does sorting, merging and indexing, and allows to retrieve reads in any regions swiftly.</p>
+<p>An important function of <code>samtools</code> is the ability to keep or remove certain reads by specifying <strong>SAM flags</strong>. During mapping, reads are assigned a certain SAM flag. This number represents a certain combination of features of the alignment. Actually, the flag field consists of 10 bits, of which every bit is related to the absence (0) or presence (1) of a feature. So while the features are stored in bitwise fashion (0's and 1's), to report this number, the FLAG field converts these bits to a readable number, the number these bits represent. Unfortunately, this number is still very user-unfriendly to read. Luckily, there are <strong>tools to convert this number into a feature list</strong>, like <a href="https://broadinstitute.github.io/picard/explain-flags.html" target="_blank">this one</a>.
 <br></p>
 <p><strong>Possible features of a read:</strong></p>
 <table align="left">
@@ -15267,8 +15268,8 @@ pigz ...
         <td align="right" style="float:right;margin-right:50px"> <b>The gaps in a scaffold can be estimated because the paired-end reads may overlap multiple contigs</b></td>
     </tr>
 </table><p><br></p>
-<p>We will use <a href="https://cab.spbu.ru/software/spades/">(meta)SPAdes</a> to <em>de novo</em> assemble our reads, because it has proven to be a <strong>very robust assembler of metagenomic data</strong>. SPAdes uses a <strong>range of k-mers with different sizes</strong> for building an initial <em>de Bruijn graph</em> and on following stages it performs graph-theoretical operations which are based on graph structure, coverage and sequence lengths.<br> 
-<a href="https://www.youtube.com/watch?v=TNYZZKrjCSk">This video</a> explains what a <em>de Bruijn graph</em> is and why it is superior to <em>overlap graphs</em> for handling repetitive regions in a sequence.<br></p>
+<p>We will use <a href="https://cab.spbu.ru/software/spades/" target="_blank">(meta)SPAdes</a> to <em>de novo</em> assemble our reads, because it has proven to be a <strong>very robust assembler of metagenomic data</strong>. SPAdes uses a <strong>range of k-mers with different sizes</strong> for building an initial <em>de Bruijn graph</em> and on following stages it performs graph-theoretical operations which are based on graph structure, coverage and sequence lengths.<br> 
+<a href="https://www.youtube.com/watch?v=TNYZZKrjCSk" target="_blank">This video</a> explains what a <em>de Bruijn graph</em> is and why it is superior to <em>overlap graphs</em> for handling repetitive regions in a sequence.<br></p>
 <div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
     <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
     <div style="color:black">The <b>stages of assembly in SPAdes</b> are:<br>
@@ -15282,7 +15283,7 @@ Stage 4: contig construction. SPAdes outputs contigs and allows to map reads bac
         The SPAdes software can take some time to run (~40 minutes real time and ~9.5 hours processor time for this specific toy dataset). When a command is running in a 'normal' terminal window, you can not close it/disconnect, otherwise the program will be interrupted! Therefore it is a good idea to <b>use a terminal multiplexer</b> for long-running commands.<br>
 <br>
 <code>tmux</code> is such a terminal multiplexer, which means that you can start a <code>tmux</code> session and then open multiple windows inside that session.
-<code>tmux</code> sessions are persistent, which means that programs running in <code>tmux</code> will continue to run even if you get disconnected. More information can be found <a href="https://linuxize.com/post/getting-started-with-tmux/">here</a>, but to get started:<br>
+<code>tmux</code> sessions are persistent, which means that programs running in <code>tmux</code> will continue to run even if you get disconnected. More information can be found <a target="_blank" href="https://linuxize.com/post/getting-started-with-tmux/">here</a>, but to get started:<br>
         <ol>
             <li>Create a named <code>tmux</code> session from the terminal:<br>
                 <code style="bash-lang">tmux new -s <em>&lt;session_name&gt;</em></code></li>
@@ -15381,7 +15382,7 @@ s        Substitute <span class="hljs-keyword">command</span>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <hr>
-<h3 id="2.4-Taxonomical-annotation">2.4 Taxonomical annotation<a class="anchor-link" href="#2.4-Taxonomical-annotation">&#182;</a></h3><p>Sequences or after assembly, contigs or scaffolds, can be identified based on similarity with known sequences in databases. <strong>Similarity can be measured by k-mer profile matching</strong> (eg. Kraken2),  <strong>fitness to a model</strong> (eg. fitness to a hidden Markov-model with HMMER) <strong>or similarity in alignments</strong>. There are many programs and implementations for each, but one of the best known is <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> which finds regions of similarity in sequences by alignment.</p>
+<h3 id="2.4-Taxonomical-annotation">2.4 Taxonomical annotation<a class="anchor-link" href="#2.4-Taxonomical-annotation">&#182;</a></h3><p>Sequences or after assembly, contigs or scaffolds, can be identified based on similarity with known sequences in databases. <strong>Similarity can be measured by k-mer profile matching</strong> (eg. Kraken2),  <strong>fitness to a model</strong> (eg. fitness to a hidden Markov-model with HMMER) <strong>or similarity in alignments</strong>. There are many programs and implementations for each, but one of the best known is <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" target="_blank">BLAST</a> which finds regions of similarity in sequences by alignment.</p>
 <p><strong>From Blast, there are several options to query information:</strong></p>
 <table align ="left">
     <thead>
@@ -15428,7 +15429,7 @@ s        Substitute <span class="hljs-keyword">command</span>
 <div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
     <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
     <p style="color:black">Be aware that all nucleotide translations occur in 6-frames.</p></div><p>When querying a large database like the non-redundant protein database of NCBI (nr), it can take a long time for BLAST to finish the search. This is why we will use <strong>DIAMOND</strong>.</p>
-<h4 id="2.4.1-DIAMOND">2.4.1 DIAMOND<a class="anchor-link" href="#2.4.1-DIAMOND">&#182;</a></h4><p><a href="https://www.nature.com/articles/nmeth.3176">DIAMOND</a> is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data. An important feature is its speed, it is able to align sequences 100 up to 20,000 times faster than BLAST with a similar degree of sensitivity. DIAMOND can only perform a pairwise-alignment of protein and translated-nucleotide sequences (see table above).<br></p>
+<h4 id="2.4.1-DIAMOND">2.4.1 DIAMOND<a class="anchor-link" href="#2.4.1-DIAMOND">&#182;</a></h4><p><a href="https://www.nature.com/articles/nmeth.3176" target="_blank">DIAMOND</a> is a sequence aligner for protein and translated DNA searches, designed for high performance analysis of big sequence data. An important feature is its speed, it is able to align sequences 100 up to 20,000 times faster than BLAST with a similar degree of sensitivity. DIAMOND can only perform a pairwise-alignment of protein and translated-nucleotide sequences (see table above).<br></p>
 <p>With <code>diamond blastx</code>, we will first <b>translate our assembled scaffolds into amino acid sequences</b> and subsequently <b>align these against NCBI's non-redundant protein database</b>. This is a very large database (~165GB in compressed format), therefore you can point to an already available database in this path <code>/home/luna.kuleuven.be/u0140985/data/db/Diamond/nr.dmnd</code></p>
 <div class="alert alert-block alert-success" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
     <b><i class="far fa-lightbulb"></i>&nbsp; Tip</b><br>
@@ -15728,7 +15729,7 @@ diamond blastx -d /mnt/storage/u0140985/db/Diamond/nr.dmnd -q ../ASSEMBLY/metato
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <hr>
-<h3 id="2.5-Visualization">2.5 Visualization<a class="anchor-link" href="#2.5-Visualization">&#182;</a></h3><p>Now that we have our assembled scaffolds which are annotated by DIAMOND, it is possible to have an overall quantitative visualization that will help us to better understand the composition of the sample. <a href="https://github.com/marbl/Krona/wiki">KronaTools</a> is a very nice tool to do this as it allows hierarchical data to be explored with zooming, multi-layered pie charts. 
+<h3 id="2.5-Visualization">2.5 Visualization<a class="anchor-link" href="#2.5-Visualization">&#182;</a></h3><p>Now that we have our assembled scaffolds which are annotated by DIAMOND, it is possible to have an overall quantitative visualization that will help us to better understand the composition of the sample. <a href="https://github.com/marbl/Krona/wiki" target="_blank">KronaTools</a> is a very nice tool to do this as it allows hierarchical data to be explored with zooming, multi-layered pie charts. 
 <br><br>
 <strong>KronaTools will classify each scaffold as an OTU</strong> (operational taxonomic unit), based on the lowest common ancestor of the 25 best DIAMOND hits (see <a href="#2.4.1-DIAMOND">above</a>). Next, it will bundle the scaffolds that belong to the same OTU (eg. same virus, bacteria, eukaryote) and display this OTU's taxonomic ranks (kingdom, phylum, class, order, family, genus, species) in a pie chart.</p>
 <h4 id="2.5.1-Mapping-with-BWA">2.5.1 Mapping with BWA<a class="anchor-link" href="#2.5.1-Mapping-with-BWA">&#182;</a></h4><p>In order to also let Krona show the abundance of an OTU in our sample, we have to <strong>summarize how many reads map back to our assembled scaffolds</strong>. We will do this with <code>bwa-mem2</code> which is, just like <a href="#Bowtie">bowtie2</a>, a read mapper. Both do the same job, but in general we can say that <code>bwa-mem2</code> is faster.</p>
@@ -15812,7 +15813,7 @@ cp metatoy.magnitudes ../DIAMOND
 <li>the classification of each scaffold bundled in an OTU</li>
 <li>OTU abundance in the sample, </li>
 <li>average log<sub>10</sub> e-value for each OTU, </li>
-<li>links to the <a href="https://www.ncbi.nlm.nih.gov/taxonomy">Taxonomy browser</a>, </li>
+<li>links to the <a href="https://www.ncbi.nlm.nih.gov/taxonomy" target="_blank">Taxonomy browser</a>, </li>
 <li>etc.</li>
 </ul>
 <p>The input we have to give <code>ktImportBLAST</code> is our <code>m8</code> file with the output of DIAMOND and optionally our magnitudes file. The command is build like this:<br></p>
@@ -15905,7 +15906,7 @@ By default, <code>awk</code> considers a field to be a string of characters surr
 <ol style="color: black">
     <li><code>awk 'NR == FNR { #some actions; next} #other condition {#other actions}' file1.txt file2.txt</code><br>
 When processing more than one file, awk reads each file sequentially, one after another, in the order they are specified on the command line. The special variable <code>NR</code> stores the total number of input records read so far, regardless of how many files have been read. The value of NR starts at 1 and always increases until the program terminates. Another variable, <code>FNR</code>, stores the number of records read <i>from the current file being processed</i>. The value of FNR starts at 1, increases until the end of the current file is reached, then is set again to 1 as soon as the first line of the next file is read, and so on. So, the condition <code>NR == FNR</code> is only true while awk is reading the first file. Thus, in the program above, the actions indicated by <code>#some actions</code> are executed when awk is reading the first file; the actions indicated by <code>#other actions</code> are executed when awk is reading the second file, if the condition in <code>#other condition</code> is met. The <code>next</code> at the end of the first action block is needed to prevent the condition in <code>#other condition</code> from being evaluated, and the actions in <code>#other actions</code> from being executed, while awk is reading the first file. <br>
-A nice visualization of <code>NR==FNR</code> is given <a href="https://www.unix.com/shell-programming-and-scripting/197115-nr-fnr-confusions.html">here</a>. 
+A nice visualization of <code>NR==FNR</code> is given <a target="_blank" href="https://www.unix.com/shell-programming-and-scripting/197115-nr-fnr-confusions.html">here</a>. 
 <br>
 <br>
     So <code>NR==FNR {..}</code> means: while the <b>total record number</b> (NR) is equal to the <b>file record number</b> (FNR of file1), do the following <code>{..}</code><br>
