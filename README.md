@@ -13,6 +13,7 @@ This tutorial can be followed by running the commands directly from the terminal
 #### Requirements:
 
 * Internet connection
+* KU Leuven credentials
 * Basic Linux command-line knowledge
 * The Github repository with this jupyter notebook, solutions notebook and files, etc.
 * NetoVIR FASTQ-files (named <em>metatoy.&ast;.fastq.gz</em>)
