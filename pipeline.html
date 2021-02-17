@@ -14265,10 +14265,21 @@ a.anchor-link {
 <a href="https://doi.org/10.1038/srep16532" target="_blank"><img src="https://img.shields.io/badge/NetoVIR-doi.org%2F10.1038%2Fsrep16532-blue" alt="Generic badge"></a>
 <a href="https://twitter.com/JMatthijnssens" target="_blank"><img src="https://img.shields.io/twitter/url?label=%40JMatthijnssens&amp;style=social&amp;url=https%3A%2F%2Ftwitter.com%2FJMatthijnssens" alt="Generic badge"></a>
 <a href="https://www.facebook.com/MatthijnssensLab" target="_blank"><img src="https://img.shields.io/badge/Laboratory%20of%20Viral%20Metagenomics-1877F2?style=flat-square&amp;logo=facebook&amp;logoColor=white" alt="Generic badge"></a></p><hr>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This jupyter notebook gives an overview of the commands needed for the primary analysis of raw NGS data, flavoured with explanations and neat tips and tricks. This is intended as a learning tool for new PhD-students, master students, labrotations, interns, etc. Basic command-line knowledge is required to be able to complete this tutorial, a Linux introduction course like <a href="https://ryanstutorials.net/linuxtutorial/" target="_blank">this one</a> should suffice.</p>
 <p>For this tutorial, we will work on the <a href="#1.1-Logging-into-the-teaching-server">gbiomed teaching server</a>. Further, you can run the commands directly from the terminal or within this jupyter notebook. To run a jupyter notebook on the teaching server, copy it to your <code>~/data/jupyternotebooks/</code> folder and open an internet browser to navigate to <a href="https://bmw.gbiomed.kuleuven.be/">bmw.gbiomed.kuleuven.be</a>, log in with your KU Leuven credentials which should finally allow you to run the notebook. You can find more information on how to transfer files to a remote server <a href="#1.2-Installing-an-SFTP-client">below</a>.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h4 id="Requirements:">Requirements:<a class="anchor-link" href="#Requirements:">&#182;</a></h4><ul>
 <li>Internet connection</li>
+<li>KU Leuven credentials</li>
 <li>Basic Linux command-line knowledge</li>
 <li>Local copy of the <a href="https://github.com/Matthijnssenslab" target="_blank">Github repository</a> with this jupyter notebook, solutions notebook, extra content, etc.</li>
 <li>NetoVIR FASTQ-files (named <em>metatoy.&ast;.fastq.gz</em>)</li>
@@ -14288,6 +14299,11 @@ a.anchor-link {
 <li><a href="#part-3-exercise-">Part 3: Exercise!</a></li>
 </ul>
 <hr>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Part-1:-Preparation"><strong>Part 1: Preparation</strong><a class="anchor-link" href="#Part-1:-Preparation">&#182;</a></h2><h3 id="1.1-Logging-into-the-teaching-server">1.1 Logging into the teaching server<a class="anchor-link" href="#1.1-Logging-into-the-teaching-server">&#182;</a></h3><div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
     <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
     <div style="color:black">
@@ -14320,7 +14336,12 @@ a.anchor-link {
 <div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
     <b><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Important</b><br>
     <p style="color: black">
-<b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on the teaching server, work in the <code>data</code> directory, which is a symbolic link to <code>/mnt/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</p></div><h3 id="1.2-Installing-an-SFTP-client">1.2 Installing an SFTP client<a class="anchor-link" href="#1.2-Installing-an-SFTP-client">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
+<b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on the teaching server, work in the <code>data</code> directory, which is a symbolic link to <code>/mnt/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</p></div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="1.2-Installing-an-SFTP-client">1.2 Installing an SFTP client<a class="anchor-link" href="#1.2-Installing-an-SFTP-client">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
 <blockquote><p><strong>Sidenote:</strong> <br> <em>Bitvise is an SSH and SFTP client in one, so if you're using Bitvise there is no need to install FileZilla.</em></p>
 </blockquote>
 <p>Once you installed and opened FileZilla, it should look like this:</p>
@@ -14818,7 +14839,7 @@ Before we start, some commandments to live by:</p>
 <li><strong>SLIDINGWINDOW</strong>:<i>&lt;windowSize&gt;:&lt;requiredQuality&gt; </i><br />Performs a sliding window trimming, cutting once the average quality within the window falls below a threshold. By considering multiple bases, a single poor quality base will not cause the removal of high quality data later in the read. </li>
 <li><strong>LEADING</strong>:<i>&lt;quality&gt; </i> <br />Cuts bases off the start of a read, if below a threshold quality</li>
 <li><strong>TRAILING</strong>:<i>&lt;quality&gt; </i> <br />Cuts bases off the end of a read, if below a threshold quality</li>
-<li><strong>CROP</strong>:<i>&lt;length&gt; </i> <br />Cuts the read to a specified length <em>(not used in our pipeline)</em></li>
+<li><strong>CROP</strong>:<i>&lt;length&gt; </i> <br />Cuts the read to a specified length</li>
 <li><strong>HEADCROP</strong>:<i>&lt;length&gt; </i> <br />Cuts the specified number of bases from the start of the read</li>
 <li><strong>MINLEN</strong>:<i>&lt;length&gt;</i> <br />Drops the read if it is below a specified length</li>
 </ul>
@@ -14891,7 +14912,7 @@ trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fa
                 TRIMMED/metatoy.R1.trimmed.fastq TRIMMED/metatoy.R1.unpaired.fastq TRIMMED/metatoy.R2.trimmed.fastq <span class="se">\</span>
                 TRIMMED/metatoy.R2.unpaired.fastq <span class="se">\</span>
                 ILLUMINACLIP:<span class="nv">$HOME</span>/data/meta_tutorial/primer_WTA2_Nextera.fa:2:30:10:1:true <span class="se">\</span>
-                HEADCROP:19 LEADING:15 TRAILING:15 SLIDINGWINDOW:4:20 MINLEN:50
+                HEADCROP:19 LEADING:15 TRAILING:15 SLIDINGWINDOW:4:20 MINLEN:50 CROP:127
 </pre></div>
 
      </div>
@@ -14933,10 +14954,10 @@ trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fa
     <li><code>19</code>: remove the first 19 bases of the read</li>
     <br>
     <hl><b>LEADING:</b></hl>
-    <li><code>15</code>: bases at the beginning of the read with a PHRED-score below 15 will be removed</li>
+    <li><code>15</code>: bases at the beginning of the read will be removed when a nucleotide occurs with a PHRED-score below 15 </li>
     <br>
     <hl><b>TRAILING:</b></hl>
-    <li><code>15</code>: bases at the end of the read with a PHRED-score below 15 will be removed</li>
+    <li><code>15</code>: bases at the end of the read will be removed when a nucleotide occurs with a PHRED-score below 15</li>
     <br>
     <hl><b>SLIDINGWINDOW:</b></hl>
     <li><code>4</code>: determines the window size at 4bp to slide over the read</li>
@@ -14944,6 +14965,9 @@ trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fa
     <br>
     <hl><b>MINLEN:</b></hl>
     <li><code>50</code>: drop reads shorter than 50bp</li>
+    <br>
+    <hl><b>CROP:</b></hl>
+    <li><code>127</code>: cuts the read to a length of 127bp to ensure a good quality read</li>
 </details></div>
 </div>
 </div>
@@ -15259,7 +15283,7 @@ pigz ...
         <li><em>metatoy.NCout.R1.fastq.gz</em>: <b>4,696,498</b></li>
         <li><em>metatoy.NCout.R2.fastq.gz</em>: <b>4,696,498</b></li>
         <li><em>metatoy.NCout.unpaired.fastq.gz</em>: <b>7,358,768</b></li>
-    </ul></ul>
+    </ul></ul><br>
     This sums up to a total of <b>16,751,764</b> reads.<br>
     This means that after quality trimming and decontamination we lost <b>5,163,414</b> reads.
     </details></div>
@@ -15455,6 +15479,20 @@ s        Substitute <span class="hljs-keyword">command</span>
     Also the DIAMOND software takes some time to run (~1.5 hours), so use again a <a href="#tmux">tmux session</a>.
     </div></div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
