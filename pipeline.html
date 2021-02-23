@@ -14488,7 +14488,8 @@ conda install -y -c bioconda -c anaconda samtools bwa-mem2 bowtie2 trimmomatic b
 <div class="alert alert-block dark-alert" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
     <b><i class="fas fa-laptop"></i>&nbsp; Command-line options</b><br>
     <ul>
-        <li><code>conda create -y --name virome_pipeline python=3.8</code> creates an python environment named <em>virome_pipeline</em>, where we will install all software.</li>
+        <li><code>conda create -y --name virome_pipeline python=3.8</code> creates a
+            python environment named <em>virome_pipeline</em>, where we will install all software.</li>
         <li><code>conda activate virome_pipeline</code> activates this environment (you can see the beginning command-line prompt name change from <code>(base)</code> to <code>(virome_pipeline)</code>.</li>
         <li><code>conda install -y -c bioconda -c anaconda ...</code> installs all necessary software from the bioconda and anaconda channels in the activated environment, and solves package dependencies, version incompatibilities, etc. </li>
     </ul>
@@ -14909,8 +14910,8 @@ pigz -d -p <span class="m">20</span> -c metatoy.R1.fastq.gz &gt; metatoy.R1.fast
 pigz -d -p <span class="m">20</span> -c metatoy.R2.fastq.gz &gt; metatoy.R2.fastq
 
 trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fastq <span class="se">\</span>
-                TRIMMED/metatoy.R1.trimmed.fastq TRIMMED/metatoy.R1.unpaired.fastq TRIMMED/metatoy.R2.trimmed.fastq <span class="se">\</span>
-                TRIMMED/metatoy.R2.unpaired.fastq <span class="se">\</span>
+                TRIMMED/metatoy.R1.trimmed.fastq TRIMMED/metatoy.R1.unpaired.fastq <span class="se">\</span>
+                TRIMMED/metatoy.R2.trimmed.fastq TRIMMED/metatoy.R2.unpaired.fastq <span class="se">\</span>
                 ILLUMINACLIP:<span class="nv">$HOME</span>/data/meta_tutorial/primer_WTA2_Nextera.fa:2:30:10:1:true <span class="se">\</span>
                 HEADCROP:19 LEADING:15 TRAILING:15 SLIDINGWINDOW:4:20 MINLEN:50 CROP:127
 </pre></div>
@@ -15193,7 +15194,7 @@ bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/co
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h5 id="Bedtools">Bedtools<a class="anchor-link" href="#Bedtools">&#182;</a></h5><p>In the end, we want to convert the resulting BAM file back to a FASTQ file, which can be handled by Bedtools' <code>bamToFastq</code>. <br>
+<h5 id="BAM-to-FASTQ-conversion">BAM to FASTQ conversion<a class="anchor-link" href="#BAM-to-FASTQ-conversion">&#182;</a></h5><p>In the end, we want to convert the resulting BAM file back to a FASTQ file, which can be handled by <code>samtools fastq</code>. <br>
 <code>pigz</code> handles the compressing of the files to reduce required storage space.</p>
 
 </div>
@@ -15203,7 +15204,7 @@ bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/co
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>bamToFastq -i PEunmapped.sorted.bam -fq NCout.R1.fastq -fq2 NCout.R2.fastq
+<div class=" highlight hl-bash"><pre><span></span>samtools fastq -1 NCout.R1.fastq -2 NCout.R2.fastq -n PEunmapped.sorted.bam
 rm mapunmap_pair.sam
 rm PEunmapped.sorted.bam
 pigz -p <span class="m">20</span> -c -9 NCout.R1.fastq &gt; metatoy.NCout.R1.fastq.gz
@@ -15233,7 +15234,7 @@ pigz -p <span class="m">20</span> -c -9 NCout.R2.fastq &gt; metatoy.NCout.R2.fas
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span>bowtie2 ... -U ... <span class="c1">#-U is the input for unpaired reads</span>
 samtools view ... <span class="p">|</span> samtools view ... -f4 ... <span class="p">|</span> samtools sort ...
-bamToFastq ...
+samtools fastq -n ...
 rm ...
 rm ...
 pigz ...

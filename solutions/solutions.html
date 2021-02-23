@@ -14326,7 +14326,7 @@ tar -xzf SPAdes-3.15.0-Linux.tar.gz
 <div class=" highlight hl-bash"><pre><span></span><span class="c1"># Unpaired</span>
 bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/contaminome/contaminome -U metatoy.unpaired.trimmed.fastq.gz -S mapunmap_unpair.sam
 samtools view -bS mapunmap_unpair.sam <span class="p">|</span> samtools view -b -f4 -F256 - <span class="p">|</span> samtools sort -n - -o UPunmapped.sorted.bam
-bamToFastq -i UPunmapped.sorted.bam -fq NCout.unpaired.fastq
+samtools fastq -n UPunmapped.sorted.bam &gt; NCout.unpaired.fastq
 rm mapunmap_unpair.sam
 rm UPunmapped.sorted.bam 
 pigz -p <span class="m">20</span> -c -9 NCout.unpaired.fastq &gt; metatoy.NCout.unpaired.fastq.gz
