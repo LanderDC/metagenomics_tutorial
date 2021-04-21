@@ -14906,10 +14906,10 @@ mkdir TRIMMED
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">pwd</span> <span class="c1">#your working directory should be $HOME/data/meta_tutorial/metatoy/READ/ if you used the same names as in this notebook</span>
 
-pigz -d -p <span class="m">20</span> -c metatoy.R1.fastq.gz &gt; metatoy.R1.fastq
-pigz -d -p <span class="m">20</span> -c metatoy.R2.fastq.gz &gt; metatoy.R2.fastq
+pigz -d -p <span class="m">6</span> -c metatoy.R1.fastq.gz &gt; metatoy.R1.fastq
+pigz -d -p <span class="m">6</span> -c metatoy.R2.fastq.gz &gt; metatoy.R2.fastq
 
-trimmomatic PE -threads <span class="m">20</span> metatoy.R1.fastq metatoy.R2.fastq <span class="se">\</span>
+trimmomatic PE -threads <span class="m">4</span> metatoy.R1.fastq metatoy.R2.fastq <span class="se">\</span>
                 TRIMMED/metatoy.R1.trimmed.fastq TRIMMED/metatoy.R1.unpaired.fastq <span class="se">\</span>
                 TRIMMED/metatoy.R2.trimmed.fastq TRIMMED/metatoy.R2.unpaired.fastq <span class="se">\</span>
                 ILLUMINACLIP:<span class="nv">$HOME</span>/data/meta_tutorial/primer_WTA2_Nextera.fa:2:30:10:1:true <span class="se">\</span>
@@ -14992,9 +14992,9 @@ rm metatoy.R1.fastq
 rm metatoy.R2.fastq
 <span class="nb">cd</span> TRIMMED
 
-pigz -p <span class="m">20</span> -c -9 metatoy.R1.trimmed.fastq &gt; metatoy.R1.trimmed.fastq.gz
-pigz -p <span class="m">20</span> -c -9 metatoy.R2.trimmed.fastq &gt; metatoy.R2.trimmed.fastq.gz
-pigz -p <span class="m">20</span> -c -9 metatoy.unpaired.fastq &gt; metatoy.unpaired.trimmed.fastq.gz
+pigz -p <span class="m">6</span> -c -9 metatoy.R1.trimmed.fastq &gt; metatoy.R1.trimmed.fastq.gz
+pigz -p <span class="m">6</span> -c -9 metatoy.R2.trimmed.fastq &gt; metatoy.R2.trimmed.fastq.gz
+pigz -p <span class="m">6</span> -c -9 metatoy.unpaired.fastq &gt; metatoy.unpaired.trimmed.fastq.gz
 
 rm metatoy.R1.trimmed.fastq
 rm metatoy.R2.trimmed.fastq
@@ -15062,7 +15062,7 @@ In this tutorial, the contaminome is already assembled and indexed with <code>bo
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/meta_tutorial/READ/TRIMMED
-bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/contaminome/contaminome -1 metatoy.R1.trimmed.fastq.gz -2 metatoy.R2.trimmed.fastq.gz -S mapunmap_pair.sam
+bowtie2 --very-sensitive -p <span class="m">6</span> -x ~/data/meta_tutorial/contaminome/contaminome -1 metatoy.R1.trimmed.fastq.gz -2 metatoy.R2.trimmed.fastq.gz -S mapunmap_pair.sam
 </pre></div>
 
      </div>
@@ -15207,8 +15207,8 @@ bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/co
 <div class=" highlight hl-bash"><pre><span></span>samtools fastq -1 NCout.R1.fastq -2 NCout.R2.fastq -n PEunmapped.sorted.bam
 rm mapunmap_pair.sam
 rm PEunmapped.sorted.bam
-pigz -p <span class="m">20</span> -c -9 NCout.R1.fastq &gt; metatoy.NCout.R1.fastq.gz
-pigz -p <span class="m">20</span> -c -9 NCout.R2.fastq &gt; metatoy.NCout.R2.fastq.gz
+pigz -p <span class="m">6</span> -c -9 NCout.R1.fastq &gt; metatoy.NCout.R1.fastq.gz
+pigz -p <span class="m">6</span> -c -9 NCout.R2.fastq &gt; metatoy.NCout.R2.fastq.gz
 </pre></div>
 
      </div>
@@ -15345,7 +15345,7 @@ Stage 4: contig construction. SPAdes outputs contigs and allows to map reads bac
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/meta_tutorial/
-metaspades.py -1 ./READ/TRIMMED/metatoy.NCout.R1.fastq.gz -2 ./READ/TRIMMED/metatoy.NCout.R2.fastq.gz -s ./READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz -t <span class="m">20</span> -k <span class="m">21</span>,33,55,77 -o metatoy
+metaspades.py -1 ./READ/TRIMMED/metatoy.NCout.R1.fastq.gz -2 ./READ/TRIMMED/metatoy.NCout.R2.fastq.gz -s ./READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz -t <span class="m">4</span> -k <span class="m">21</span>,33,55,77 -o metatoy
 mv metatoy ASSEMBLY
 <span class="nb">cd</span> ASSEMBLY
 mv scaffolds.fasta metatoy.scaffolds.fasta
@@ -15504,7 +15504,7 @@ s        Substitute <span class="hljs-keyword">command</span>
 mkdir DIAMOND
 <span class="nb">cd</span> DIAMOND
 
-diamond blastx -d /mnt/storage/u0140985/db/Diamond/nr.dmnd -q ../ASSEMBLY/metatoy.scaffolds.fasta -a metatoy -p <span class="m">32</span> --sensitive -c <span class="m">1</span> --tmpdir /dev/shm
+diamond blastx -d /mnt/storage/u0140985/db/Diamond/nr.dmnd -q ../ASSEMBLY/metatoy.scaffolds.fasta -a metatoy -p <span class="m">6</span> --sensitive -c <span class="m">1</span> --tmpdir /dev/shm
 </pre></div>
 
      </div>
@@ -15825,7 +15825,7 @@ bwa-mem2 index metatoy.scaffolds.fasta
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span>bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.R1.fastq.gz ../READ/TRIMMED/metatoy.NCout.R2.fastq.gz -t <span class="m">32</span> <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.R.sort.bam
-bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz -t <span class="m">32</span> <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.un.sort.bam
+bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz -t <span class="m">4</span> <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.un.sort.bam
 samtools merge -f metatoy.bam metatoy.R.sort.bam metatoy.un.sort.bam
 rm metatoy.R.sort.bam
 rm metatoy.un.sort.bam
