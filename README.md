@@ -1,3 +1,5 @@
+<h1>&#x1F53A; DON'T USE FOR NOW! &#x1F53A;</h1>
+
 <a href="https://rega.kuleuven.be/cev/viralmetagenomics"><img src="https://rega.kuleuven.be/cev/viralmetagenomics/pictures/lovm/image_preview" height="12.5%" width="12.5%" align="right"/></a>
 
 # JM-lab bioinformatics pipeline
@@ -18,3 +20,6 @@ This tutorial can be followed by running the commands directly from the terminal
 * The Github repository with this jupyter notebook, solutions notebook and files, etc.
 * NetoVIR FASTQ-files (named <em>metatoy.&ast;.fastq.gz</em>)
 * Bioinformatics mood
+
+#### Disclaimer:
+We are working on the teaching server of gbiomed, which is not suited for 'personal use' (i.e. running a lot of samples or using too much cores/threads). Also try to avoid working on the teaching server during exam time (December/January, first two weeks after Easter holiday and June) as the students from the bioinformatics classes otherwise will have problems during their exam.
