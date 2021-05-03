@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14271,7 +14271,7 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>This jupyter notebook gives an overview of the commands needed for the primary analysis of raw NGS data, flavoured with explanations and neat tips and tricks. This is intended as a learning tool for new PhD-students, master students, labrotations, interns, etc. Basic command-line knowledge is required to be able to complete this tutorial, a Linux introduction course like <a href="https://ryanstutorials.net/linuxtutorial/" target="_blank">this one</a> should suffice.</p>
-<p>For this tutorial, we will work on the <a href="#1.1-Logging-into-the-teaching-server">gbiomed teaching server</a>. Further, you can run the commands directly from the terminal or within this jupyter notebook. To run a jupyter notebook on the teaching server, copy it to your <code>~/data/jupyternotebooks/</code> folder and open an internet browser to navigate to <a href="https://bmw.gbiomed.kuleuven.be/">bmw.gbiomed.kuleuven.be</a>, log in with your KU Leuven credentials which should finally allow you to run the notebook. You can find more information on how to transfer files to a remote server <a href="#1.2-Installing-an-SFTP-client">below</a>.</p>
+<p>You can find more information on how to transfer files to a remote server <a href="#1.2-Installing-an-SFTP-client">below</a>.</p>
 
 </div>
 </div>
@@ -14304,13 +14304,26 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Part-1:-Preparation"><strong>Part 1: Preparation</strong><a class="anchor-link" href="#Part-1:-Preparation">&#182;</a></h2><h3 id="1.1-Logging-into-the-teaching-server">1.1 Logging into the teaching server<a class="anchor-link" href="#1.1-Logging-into-the-teaching-server">&#182;</a></h3><div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
+<h2 id="Part-1:-Preparation"><strong>Part 1: Preparation</strong><a class="anchor-link" href="#Part-1:-Preparation">&#182;</a></h2><h3 id="1.1-Getting-access">1.1 Getting access<a class="anchor-link" href="#1.1-Getting-access">&#182;</a></h3><p><p>To be able to perform analysis on a remote Linux machine or a server, a connection needs to be made through the shell of the operating system. Through this shell, we can use the command-line interface to execute tasks.</p>
+        <p>For this tutorial, we will work  on a Linux desktop (GBW-D-L0065) via an <code>ssh</code> connection. To get access to this desktop, you will need to ask permission via the <a target="_blank" href="https://helpdesk.gbiomed.kuleuven.be/helpdesk/WebObjects/Helpdesk.woa">gbiomed ICT helpdesk</a> (see image below). Request SSH login, fill in your own u- or r-number (leave the box 'Name new user' blank) and also provide some request details like in the image.</p>
+        <img src="https://raw.githubusercontent.com/Matthijnssenslab/tutorial_images/main/SSH-access.png" height="30%" width="30%" /></p>
+<div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
+    <b><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Important</b><br>
+    <p style="color: black">
+        If you are <b>connecting with your own PC from outside the KU Leuven network</b> (not campusroam/eduroam), for example from home, then you will have to install the Pulse Secure VPN client to be able to connect to the B-zone of the KU Leuven network. Installation instructions for Pulse Secure on all operating systems can be found <a target="_blank" href="https://admin.kuleuven.be/icts/services/extranet/ssl-vpn-pulse-client-en">here</a>. <b>You will not be able to access the Linux desktop if you are not connected to the B-zone of the KU Leuven network via Pulse Secure.</b>
+</div></div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="1.2-Logging-into-a-remote-Linux-machine">1.2 Logging into a remote Linux machine<a class="anchor-link" href="#1.2-Logging-into-a-remote-Linux-machine">&#182;</a></h3><div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
     <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
-    <div style="color:black">
-<p>To be able to perform analysis on a Linux machine or a server, a connection needs to be made through the shell of the operating system. Through this shell we can use the command-line interface to execute tasks.</p>
-<p>For this tutorial, we can work on the teaching server of gbiomed (bmw.gbiomed.kuleuven.be). Everyone with a u- or r-number from KU Leuven can connect to this remote server by using <code>ssh</code> (<a target="_blank" href="https://searchsecurity.techtarget.com/definition/Secure-Shell">more info</a>) with your KU Leuven credentials.</p>
-<p>MacOS and Linux users can already proceed to the next step as these operating systems already have a terminal and <code>ssh</code> natively installed. </p>
-<p>Windows users on the other hand, will have to install an SSH client (<a target="_blank" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> or <a target="_blank" href="https://www.bitvise.com/ssh-client-download">Bitvise</a>) or a Linux subsytem for Windows and a terminal app (eg. Ubuntu app). The latter is preferred because it is already a part of Windows and subsequently the next steps will be the same as for Linux and Mac users. Instructions on how to install the Ubuntu terminal app on Windows can be found <a target="_blank" href="https://ubuntu.com/tutorials/ubuntu-on-windows#1-overview">here</a>, be aware that this requires at least a x86 PC running Windows 10 (Fall Creators update Oct 2017).</p></div></div><p><strong>Perform following actions in a terminal (command-line interface):</strong></p>
+    <p style="color: black">
+MacOS and Linux users can already proceed as these operating systems already have a terminal and <code>ssh</code> natively installed.</p>
+    <p style="color: black">Windows users on the other hand, will have to enable the Linux subsytem for Windows and install a terminal app (eg. Ubuntu app) through the Microsoft store. Instructions on how to install the Ubuntu terminal app on Windows can be found <a target="_blank" href="https://ubuntu.com/tutorials/ubuntu-on-windows#1-overview">here</a>, be aware that this requires at least a x86 PC running Windows 10 (Fall Creators update Oct 2017).</p>
+</div><p>If you want to connect to a KUL Linux PC by <code>ssh</code>, you will have to first login via a gatewayserver. This way the KU Leuven ICT Department protects Linux KU Leuven computers and by extension the whole KU Leuven network against cyberattacks. This means that you will have to first login to the gatewayserver and then from the gatewayserver to the Linux desktop (GBW-D-L0065) we will be working on (a visualization of this process is given below).<br>
+<img src="https://raw.githubusercontent.com/Matthijnssenslab/tutorial_images/main/ssh_tunneling.png" /><br>
+Start by accessing the gateway server through its IP-adress [10.112.84.69]. Give the password connected to your KU Leuven account.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14319,7 +14332,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>ssh uXXXXXXX@bmw.gbiomed.kuleuven.be
+<div class=" highlight hl-bash"><pre><span></span>ssh uXXXXXXX@10.112.84.69
 </pre></div>
 
      </div>
@@ -14332,32 +14345,83 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <blockquote><p>Replace uXXXXXXX with your own u- or r-number.</p>
 </blockquote>
-<p>Next, you should give your password connected to your KU Leuven account and you're in!</p>
+<p>Next, immediately connect to the Linux PC (2nd SSH connection) on the IP address [10.34.181.97]. Again with your KU Leuven credentials.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>ssh uXXXXXXX@10.34.181.97
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If everything went fine, the command <code>ls -l</code> should give an output like below:<br>
+<img src="https://raw.githubusercontent.com/Matthijnssenslab/tutorial_images/main/home-directory.png" width="50%" height="50%" /></p>
 <div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
     <b><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Important</b><br>
-    <p style="color: black">
-<b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on the teaching server, work in the <code>data</code> directory, which is a symbolic link to <code>/mnt/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</p></div>
+        <ol style="color: black">
+            <li> If you want to connect from home, always make sure that you are connected to the B-zone of KU Leuven with Pulse Secure! Otherwise you will not be able to log in.</li>
+<li><b>You will log in to the <code>home</code> directory, but always avoid working in here as this has limited storage and will cause trouble when it&#39;s full!</b> Therefore, on this Linux machine, work in the <code>data</code> directory, which is a symbolic link to <code>/storage/uXXXXXXX</code>. Here, you will have enough space to store raw data, results and temporary files.</li></ol></div>
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.2-Installing-an-SFTP-client">1.2 Installing an SFTP client<a class="anchor-link" href="#1.2-Installing-an-SFTP-client">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
-<blockquote><p><strong>Sidenote:</strong> <br> <em>Bitvise is an SSH and SFTP client in one, so if you're using Bitvise there is no need to install FileZilla.</em></p>
-</blockquote>
+<h3 id="1.3-SFTP-client-to-transfer-files">1.3 SFTP client to transfer files<a class="anchor-link" href="#1.3-SFTP-client-to-transfer-files">&#182;</a></h3><p>In order to transfer files from your local computer to a remote server you need an SFTP (Secure File Transfer Protocol) client, a commonly used SFTP client is <a href="https://filezilla-project.org/" target="_blank">FileZilla</a>. You can download and install it through the FileZilla project website.</p>
 <p>Once you installed and opened FileZilla, it should look like this:</p>
-<center><img src="https://github.com/Matthijnssenslab/tutorial_images/blob/main/Filezilla_start.png?raw=true" height="70%" width="70%" style="left" /></center>
-<br>
-<ol>
-<li>On top of the program you can fill out the host (bmw.gbiomed.kuleuven.be), your u/r-number and password connected to KU Leuven and <b>set the port to 22</b> (see image above).</li>
+<center><img src="https://raw.githubusercontent.com/Matthijnssenslab/tutorial_images/main/Filezilla.png" height="70%" width="70%" style="left" /></center>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Before we can transfer files to the Linux desktop, we have to forward the connection of our local computer/host (i.e. your laptop) to the remote desktop (GBW-D-L0065) via a tunnel through the gatewayserver. This can also be accomplished by <code>ssh</code>. Type in following command in <b> a new terminal window</b>:</p>
 
-<li>Once you click connect, you should be able to transfer files from your computer to the remote server simply by dragging them one or the other way.</li></ol>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-bash"><pre><span></span>ssh -N -f -L <span class="m">2222</span>:10.34.181.97:22 uXXXXXXX@10.112.84.69
+</pre></div>
 
-<br>
-<center><img src="https://github.com/Matthijnssenslab/tutorial_images/blob/main/Filezilla_transfer.png?raw=true" height="70%" width="70%" style="left" /></center><div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px">
+     </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="alert alert-block dark-alert" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
+    <b><i class="fas fa-laptop"></i>&nbsp; Command-line options</b><br>
+<ul style="color:black">
+    <li> <code>-N</code>: For forwarding ports</li>
+    <li> <code>-f</code>: Runs the command in the background</li>
+    <li> <code>-L 2222:10.34.181.97:22</code>: Forwards the connection from port 2222 on the local host to port 22 on the remote Linux desktop (with IP 10.34.181.97) through the gatewayserver (accomplished by uXXXXXXX@10.112.84.69).</li></ul></div>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="1.3.1-Filezilla">1.3.1 Filezilla<a class="anchor-link" href="#1.3.1-Filezilla">&#182;</a></h4><ol>
+<li>On top of the Filezilla program you can now fill out the host (sftp://localhost), your u/r-number and password connected to KU Leuven and <b>set the port to 2222</b> (see image below).</li>
+
+<li>Once you click connect, you should be able to transfer files from your computer to the remote server simply by dragging them one or the other way.</li></ol><p><br></p>
+<center><img src="https://raw.githubusercontent.com/Matthijnssenslab/tutorial_images/main/Filezilla_transfer_new.png" height="70%" width="70%" style="left" /></center><div class="alert alert-block alert-warning" style="background-color: white; border: 2px solid; padding: 10px">
     <b><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Important</b><br>
     <p style="color: black">
         FileZilla will connect to your <code>home</code> directory by default, but do not copy files here! Instead, copy them to the <code>data</code> directory.</p>
-</div><h4 id="1.2.1-Transfer-files">1.2.1 Transfer files<a class="anchor-link" href="#1.2.1-Transfer-files">&#182;</a></h4><p>From the terminal, make a new directory in your data folder and transfer all provided files (FASTQ files, file containing WTA and Nextera primers, contaminome, etc.) to this directory with FileZilla.</p>
+</div><h4 id="1.3.1-Transfer-files">1.3.1 Transfer files<a class="anchor-link" href="#1.3.1-Transfer-files">&#182;</a></h4><p>From the terminal, make a new directory in your data folder and transfer all provided files (FASTQ files, file containing WTA and Nextera primers, contaminome, etc.) to this directory with FileZilla.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14374,328 +14438,6 @@ a.anchor-link {
 </div>
 </div>
 
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="1.3-Installing-all-necessary-software-on-the-remote-server">1.3 Installing all necessary software on the remote server<a class="anchor-link" href="#1.3-Installing-all-necessary-software-on-the-remote-server">&#182;</a></h3><h4 id="1.3.1-Miniconda">1.3.1 Miniconda<a class="anchor-link" href="#1.3.1-Miniconda">&#182;</a></h4><p><strong>Miniconda</strong> is a package manager from which you can install a lot of (bioinformatics) software. More info on conda can be found <a href="https://docs.conda.io/projects/conda/en/latest/" target="_blank">here</a>.</p>
-<h5 id="Installing-Miniconda:">Installing Miniconda:<a class="anchor-link" href="#Installing-Miniconda:">&#182;</a></h5><ol>
-<li>Create in your datafolder a new <code>software</code> directory and move into that directory:</li>
-</ol>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data
-mkdir software
-<span class="nb">cd</span> software
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<ol>
-<li>Download the Miniconda installer with <code>wget</code>. Next, run the installation script (see command-line options below). When Miniconda is installed, activate conda by sourcing the initialization script, this simply sets a couple of shell environment variables, and <code>conda</code> command as a shell function. More information in the <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html" target="_blank">installer guidelines</a>.</li>
-</ol>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-
-bash Miniconda3-latest-Linux-x86_64.sh -b -p <span class="nv">$HOME</span>/data/software/miniconda
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert alert-block dark-alert" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
-    <b><i class="fas fa-laptop"></i>&nbsp; Command-line options</b><br>
-<ul style="color:black">
-    <li><code>-b</code> makes the installation run silent</li>
-    <li><code>-p</code> provides the path where to install Miniconda</li>
-    </ul></div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">source</span> <span class="nv">$HOME</span>/data/software/miniconda/bin/activate
-conda init
-<span class="nb">source</span> ~/.bashrc
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
-    <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
-    <p style="color: black">
-Notice that <code>&#36;HOME</code> and <code>~/</code>both point to your <code>home</code> directory.</p></div>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h5 id="Installing-software-with-Miniconda:">Installing software with Miniconda:<a class="anchor-link" href="#Installing-software-with-Miniconda:">&#182;</a></h5><ol>
-<li>When installing new software with conda, the best practice is to create a new conda environment for each project you are working on, for example:</li>
-</ol>
-<p>In this tutorial we will run the virome pipeline, so we will create a conda environment with all software we need to run the pipeline installed in this environment. Then we need to activate this environment to make the software available for use.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>conda create -y --name virome_pipeline <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
-conda activate virome_pipeline
-conda install -y -c bioconda -c anaconda samtools bwa-mem2 bowtie2 trimmomatic bedtools fastqc pigz seqtk
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert alert-block dark-alert" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
-    <b><i class="fas fa-laptop"></i>&nbsp; Command-line options</b><br>
-    <ul>
-        <li><code>conda create -y --name virome_pipeline python=3.8</code> creates a
-            python environment named <em>virome_pipeline</em>, where we will install all software.</li>
-        <li><code>conda activate virome_pipeline</code> activates this environment (you can see the beginning command-line prompt name change from <code>(base)</code> to <code>(virome_pipeline)</code>.</li>
-        <li><code>conda install -y -c bioconda -c anaconda ...</code> installs all necessary software from the bioconda and anaconda channels in the activated environment, and solves package dependencies, version incompatibilities, etc. </li>
-    </ul>
-    </div>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="1.3.2-Installing-from-another-source">1.3.2 Installing from another source<a class="anchor-link" href="#1.3.2-Installing-from-another-source">&#182;</a></h4><p>The Miniconda installation will most of the time lag a few versions behind the most current release. If you really want the most recent version of the software, then you'll need to manually install the software and its dependencies.</p>
-<p>Next to Miniconda their are a lot of other possibilities to install software (<code>pip</code>, compiling from source, unpacking binaries, installing from github repository, etc.)</p>
-<h4 id="1.3.2.1-DIAMOND">1.3.2.1 DIAMOND<a class="anchor-link" href="#1.3.2.1-DIAMOND">&#182;</a></h4><p>As the latest version of <a href="https://github.com/bbuchfink/diamond" target="_blank">DIAMOND</a> (a sequence aligner for protein and translated DNA searches) is not available through <code>conda</code>, we can install it from Github by following the <a href="https://github.com/bbuchfink/diamond/wiki" target="_blank">installation instructions</a>.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/software/
-mkdir diamond
-<span class="nb">cd</span> diamond
-wget http://github.com/bbuchfink/diamond/releases/download/v2.0.6/diamond-linux64.tar.gz
-tar -xzf diamond-linux64.tar.gz
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Now we still need to put the diamond executable in our <code>PATH</code> variable so we can call the <code>diamond</code> command from everywhere in the command line. This can be done by making a <code>bin</code> subdirectory in <code>~/data/software/</code>, followed by creating a <a href="https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/" target="_blank">symbolic link</a> from the <code>diamond</code> executable to <code>~/data/software/bin/</code> and finally export this directory to our <code>$PATH</code> by adding it to your <code>.profile</code> file.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/software
-mkdir bin
-<span class="nb">cd</span> bin/
-ln -s ~/data/software/diamond/diamond .
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Next, open the <code>.profile</code> file with <code>nano</code> (a text editor) and add following line to the bottom of the file:</p>
-<div class="highlight"><pre><span></span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/data/software/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-</pre></div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>nano ~/.profile
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert alert-block alert-info" style="background-color: white; border: 2px solid; padding: 15px;display:inline-block">
-    <b><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp; Info</b><br>
-    <p style="color: black">
-More documentation on how and where to set the <code>PATH</code> variable in these two topics:</p>
-<ul style="color: black">
-<li><strong>How</strong>: <a target="_blank" href="https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path">How to correctly add a path to PATH</a></li>
-<li><strong>Where</strong>: <a target="_blank" href="https://superuser.com/questions/183870/difference-between-bashrc-and-bash-profile/183980#183980">Difference between .bashrc and .profile files</a></li>
-</ul></div><p>When you <code>source</code> your <code>.profile</code> file, you should now be able to call <code>diamond</code>.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">source</span> ~/.profile
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Let's check out the version of Diamond you have installed!</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>diamond version
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="1.3.2.2-Krona">1.3.2.2 Krona<a class="anchor-link" href="#1.3.2.2-Krona">&#182;</a></h4><p>In the recent past, there were some issues with <a target="_blank" href="https://github.com/marbl/Krona">Krona</a> but they have been solved by the latest releases on Github. Unfortunately these are not yet available through <code>conda</code>, so we will also install them directly from Github.</p>
-<p> Clone the Krona repository in your <code>~/data/software</code> directory.</p>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/software
-git clone https://github.com/marbl/Krona.git
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><p>This will unpack to <code>Krona/</code>.</p></p>
-<p><p>Move to <code>Krona/KronaTools/</code> and run the installation script <code>install.pl</code>.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/software/Krona/KronaTools
-./install.pl --prefix ~/data/software
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<div class="alert alert-block dark-alert" style="background-color: white; border: 2px solid; padding: 10px;display:inline-block">
-    <b><i class="fas fa-laptop"></i>&nbsp; Command-line options</b><br><br>
-    <p style="color:black">
-        <code>install.pl</code> will install all the Krona scripts into a <code>bin</code> directory within the path you specified with <code>--prefix</code>. We give it <code>~/data/software</code> because we already have a <code>bin</code> directory there which is installed in our <code>PATH</code> variable.
-    </p>
-</div>
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h5 id="Linking-the-taxonomy-database-for-Krona">Linking the taxonomy database for Krona<a class="anchor-link" href="#Linking-the-taxonomy-database-for-Krona">&#182;</a></h5><p>Krona is installed but it still needs <b>taxonomy databases</b> to generate taxonomic reports. Normally, you should run the <code>ktUpdateTaxonomy.sh</code> and <code>updateAccessions.sh</code> scripts to download these databases but as we are working on the teaching server with limited storage capability, they are already available under <code>/home/luna.kuleuven.be/u0140985/data/db/Krona/</code>. By creating a symbolic link from this path to the default path where Krona will search for the databases when it is running, we save some storage space.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>ln -sf /mnt/storage/u0140985/db/Krona ~/data/software/Krona/KronaTools/taxonomy
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
-<div class="alert alert-block" style="color:purple;background-color: white; border: 2px solid; padding: 15px;display:inline-block">
-    <b><i class="fas fa-pencil-alt"></i>&nbsp; Exercise</b><br>
-
-<h4 id="1-3-1-exercise" style="color: black">1.3-1 Exercise</h4>
-<p style="color: black">Try to install the latest version of <a target="_blank" href="https://github.com/ablab/spades">SPAdes</a> by yourself. If you have troubles with this exercise, the steps are listed in the solutions notebook.</p></div>
-</div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -14906,10 +14648,10 @@ mkdir TRIMMED
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">pwd</span> <span class="c1">#your working directory should be $HOME/data/meta_tutorial/metatoy/READ/ if you used the same names as in this notebook</span>
 
-pigz -d -p <span class="m">6</span> -c metatoy.R1.fastq.gz &gt; metatoy.R1.fastq
-pigz -d -p <span class="m">6</span> -c metatoy.R2.fastq.gz &gt; metatoy.R2.fastq
+pigz -d -c metatoy.R1.fastq.gz &gt; metatoy.R1.fastq
+pigz -d -c metatoy.R2.fastq.gz &gt; metatoy.R2.fastq
 
-trimmomatic PE -threads <span class="m">4</span> metatoy.R1.fastq metatoy.R2.fastq <span class="se">\</span>
+TrimmomaticPE -threads <span class="m">4</span> metatoy.R1.fastq metatoy.R2.fastq <span class="se">\</span>
                 TRIMMED/metatoy.R1.trimmed.fastq TRIMMED/metatoy.R1.unpaired.fastq <span class="se">\</span>
                 TRIMMED/metatoy.R2.trimmed.fastq TRIMMED/metatoy.R2.unpaired.fastq <span class="se">\</span>
                 ILLUMINACLIP:<span class="nv">$HOME</span>/data/meta_tutorial/primer_WTA2_Nextera.fa:2:30:10:1:true <span class="se">\</span>
@@ -14992,9 +14734,9 @@ rm metatoy.R1.fastq
 rm metatoy.R2.fastq
 <span class="nb">cd</span> TRIMMED
 
-pigz -p <span class="m">6</span> -c -9 metatoy.R1.trimmed.fastq &gt; metatoy.R1.trimmed.fastq.gz
-pigz -p <span class="m">6</span> -c -9 metatoy.R2.trimmed.fastq &gt; metatoy.R2.trimmed.fastq.gz
-pigz -p <span class="m">6</span> -c -9 metatoy.unpaired.fastq &gt; metatoy.unpaired.trimmed.fastq.gz
+pigz -c -9 metatoy.R1.trimmed.fastq &gt; metatoy.R1.trimmed.fastq.gz
+pigz -c -9 metatoy.R2.trimmed.fastq &gt; metatoy.R2.trimmed.fastq.gz
+pigz -c -9 metatoy.unpaired.fastq &gt; metatoy.unpaired.trimmed.fastq.gz
 
 rm metatoy.R1.trimmed.fastq
 rm metatoy.R2.trimmed.fastq
@@ -15021,7 +14763,7 @@ rm metatoy.unpaired.fastq
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/meta_tutorial
 mkdir fastqc_exercise
-fastqc -o fastqc_exercise/ -t <span class="m">6</span> READ/TRIMMED/*.fastq.gz <span class="c1">#the wildcard &#39;*&#39; is used to run `fastqc` on all FASTQ files within the &#39;TRIMMED&#39; folder</span>
+fastqc -o fastqc_exercise/ READ/TRIMMED/*.fastq.gz <span class="c1">#the wildcard &#39;*&#39; is used to run `fastqc` on all FASTQ files within the &#39;TRIMMED&#39; folder</span>
 </pre></div>
 
      </div>
@@ -15062,7 +14804,7 @@ In this tutorial, the contaminome is already assembled and indexed with <code>bo
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/meta_tutorial/READ/TRIMMED
-bowtie2 --very-sensitive -p <span class="m">6</span> -x ~/data/meta_tutorial/contaminome/contaminome -1 metatoy.R1.trimmed.fastq.gz -2 metatoy.R2.trimmed.fastq.gz -S mapunmap_pair.sam
+bowtie2 --very-sensitive -x ~/data/meta_tutorial/contaminome/contaminome -1 metatoy.R1.trimmed.fastq.gz -2 metatoy.R2.trimmed.fastq.gz -S mapunmap_pair.sam
 </pre></div>
 
      </div>
@@ -15078,7 +14820,6 @@ bowtie2 --very-sensitive -p <span class="m">6</span> -x ~/data/meta_tutorial/con
 <ul style="color:black">
 <li><code>-x</code> should point to the indexed reference sequence</li>
 <li><code>--very-sensitive</code> aligns the reads on a sensitive setting at the cost of speed</li>
-<li><code>-p</code> causes Bowtie2 to launch a specified number of parallel search threads</li>
 <li><code>-1</code> and <code>-2</code> should provide the input read files</li>
 <li><code>-S</code> specifies the output SAM file</li>
 </ul></div>
@@ -15207,8 +14948,8 @@ bowtie2 --very-sensitive -p <span class="m">6</span> -x ~/data/meta_tutorial/con
 <div class=" highlight hl-bash"><pre><span></span>samtools fastq -1 NCout.R1.fastq -2 NCout.R2.fastq -n PEunmapped.sorted.bam
 rm mapunmap_pair.sam
 rm PEunmapped.sorted.bam
-pigz -p <span class="m">6</span> -c -9 NCout.R1.fastq &gt; metatoy.NCout.R1.fastq.gz
-pigz -p <span class="m">6</span> -c -9 NCout.R2.fastq &gt; metatoy.NCout.R2.fastq.gz
+pigz -c -9 NCout.R1.fastq &gt; metatoy.NCout.R1.fastq.gz
+pigz -c -9 NCout.R2.fastq &gt; metatoy.NCout.R2.fastq.gz
 </pre></div>
 
      </div>
@@ -15486,25 +15227,11 @@ s        Substitute <span class="hljs-keyword">command</span>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/meta_tutorial/
 mkdir DIAMOND
 <span class="nb">cd</span> DIAMOND
 
-diamond blastx -d /mnt/storage/u0140985/db/Diamond/nr.dmnd -q ../ASSEMBLY/metatoy.scaffolds.fasta -a metatoy -p <span class="m">6</span> --sensitive -c <span class="m">1</span> --tmpdir /dev/shm
+diamond blastx -d /mnt/storage/databases/diamond/nr.dmnd -q ../ASSEMBLY/metatoy.scaffolds.fasta -a metatoy -p <span class="m">4</span>
 </pre></div>
 
      </div>
@@ -15522,9 +15249,6 @@ diamond blastx -d /mnt/storage/u0140985/db/Diamond/nr.dmnd -q ../ASSEMBLY/metato
 <li><code>-q</code> points to our scaffolds file with sequences for which we want to know the annotation</li>
 <li><code>-a</code> specifies the filename of the DAA</li>
 <li><code>-p</code> specifies how much threads to use</li>
-<li>the <code>--sensitive</code> option enables the sensitive mode designed for full sensitivity for hits &gt;40% identity</li>
-<li><code>-c</code> is the number of indexed chunks, setting this parameter to 1 will improve the performance at the cost of increased memory use</li>
-<li><code>--tmpdir</code> specifies the directory where to store temporary files, the <code>/dev/shm</code> directory keeps these files in the working memory while running DIAMOND but does not take up storage space</li>
 </ul>
 </div><p style="color:black"><code>diamond blastx</code> creates a DIAMOND Alignment Archive (DAA) which can be formatted to a tabular output with <code>diamond view</code>.</p>
 </div>
@@ -15824,8 +15548,8 @@ bwa-mem2 index metatoy.scaffolds.fasta
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span>bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.R1.fastq.gz ../READ/TRIMMED/metatoy.NCout.R2.fastq.gz -t <span class="m">32</span> <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.R.sort.bam
-bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz -t <span class="m">4</span> <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.un.sort.bam
+<div class=" highlight hl-bash"><pre><span></span>bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.R1.fastq.gz ../READ/TRIMMED/metatoy.NCout.R2.fastq.gz <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.R.sort.bam
+bwa-mem2 mem metatoy.scaffolds.fasta ../READ/TRIMMED/metatoy.NCout.unpaired.fastq.gz <span class="p">|</span> samtools view -Su - <span class="p">|</span> samtools sort - -o metatoy.un.sort.bam
 samtools merge -f metatoy.bam metatoy.R.sort.bam metatoy.un.sort.bam
 rm metatoy.R.sort.bam
 rm metatoy.un.sort.bam

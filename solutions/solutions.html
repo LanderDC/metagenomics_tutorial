@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
-td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14259,51 +14259,6 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Exercise-1.3-1">Exercise 1.3-1<a class="anchor-link" href="#Exercise-1.3-1">&#182;</a></h4>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">cd</span> ~/data/software
-wget http://cab.spbu.ru/files/release3.15.0/SPAdes-3.15.0-Linux.tar.gz
-tar -xzf SPAdes-3.15.0-Linux.tar.gz
-<span class="nb">cd</span> SPAdes-3.15.0-Linux/bin/
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Don't forget to add the SPAdes <code>bin</code> directory to your <code>PATH</code> by editing your <code>.profile</code> in the home directory</p>
-<div class="highlight"><pre><span></span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;~/data/software/SPAdes-3.15.0-Linux/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-</pre></div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-bash"><pre><span></span><span class="nb">source</span> ~/.profile
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<hr>
 <h4 id="FastQC-comparison">FastQC comparison<a class="anchor-link" href="#FastQC-comparison">&#182;</a></h4><p>You can clearly see that the quality of the reads increases after trimming, certainly at the beginning and the end of the sequence. Also notice that your read becomes ~20bp shorter, because you remove adapter and primer sequences.</p>
 <p><u>FastQC of the raw R1 reads:</u></p>
 <p><img src="https://github.com/Matthijnssenslab/tutorial_images/blob/main/FastQC_raw.png?raw=true" height="60%" width="60%" /></p>
@@ -14324,12 +14279,12 @@ tar -xzf SPAdes-3.15.0-Linux.tar.gz
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-bash"><pre><span></span><span class="c1"># Unpaired</span>
-bowtie2 --very-sensitive -p <span class="m">20</span> -x ~/data/meta_tutorial/contaminome/contaminome -U metatoy.unpaired.trimmed.fastq.gz -S mapunmap_unpair.sam
+bowtie2 --very-sensitive -x ~/data/meta_tutorial/contaminome/contaminome -U metatoy.unpaired.trimmed.fastq.gz -S mapunmap_unpair.sam
 samtools view -bS mapunmap_unpair.sam <span class="p">|</span> samtools view -b -f4 -F256 - <span class="p">|</span> samtools sort -n - -o UPunmapped.sorted.bam
 samtools fastq -n UPunmapped.sorted.bam &gt; NCout.unpaired.fastq
 rm mapunmap_unpair.sam
 rm UPunmapped.sorted.bam 
-pigz -p <span class="m">20</span> -c -9 NCout.unpaired.fastq &gt; metatoy.NCout.unpaired.fastq.gz
+pigz -c -9 NCout.unpaired.fastq &gt; metatoy.NCout.unpaired.fastq.gz
 </pre></div>
 
      </div>
